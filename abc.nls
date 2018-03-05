@@ -1,5 +1,17 @@
 __includes ["pso.nls"]
 
+globals
+[
+  no_bees ;Number of bees in the ABC
+  limit ;Limit of onlooker bees
+  no_onlookers
+  no_employed
+  no_scouts
+]
+
 to init
-  
+  set no_bees 30
+  set no_onlookers no_bees / 2 ;50% of the swarm according to D. Karaboga's implementation https://abc.erciyes.edu.tr/pub/tr06_2005.pdf
+  set no_employed no_bees / 2 ;Idem
+  set no_scouts 1 ;Idem
 end

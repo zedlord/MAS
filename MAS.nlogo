@@ -1,11 +1,34 @@
 __includes ["abc.nls"]
+patches-own
+[
+  score ;Fitness score of a patch
+]
+
+globals
+[
+  optimum ;patch with the best value
+  best_found_patch ;Save the best found patch
+]
 
 to setup
   create_problem_space
 end
 
-to create_problem_space
+to create_problem_space ;Create a problem space
+  ask patches [ set score random-float 1.0 ] ;Assign random score to every patch
+  repeat searchspace-smoothness [ diffuse score 1 ] ;Smooth the search space using the slider
+  let min-score min [score] of patches
+  let max-score max [score] of patches
 
+  ask patches [ set score 0.99999 * (score - min-score) / (max-score - min-score)  ] ;Make sure the score are between 0 and 1
+
+  ask max-one-of patches [score] ;Set a global optimum and assign the value 1 to this patch
+  [
+    set score 1.0
+    set optimum self
+  ]
+
+  ask patches [ set pcolor scale-color green score 0.0 1.0] ;Color every patch using a scale
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -34,6 +57,38 @@ GRAPHICS-WINDOW
 1
 ticks
 30.0
+
+SLIDER
+-2
+193
+211
+226
+searchspace-smoothness
+searchspace-smoothness
+0
+5
+3.8
+0.1
+1
+NIL
+HORIZONTAL
+
+BUTTON
+20
+49
+102
+82
+setup
+setup
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
