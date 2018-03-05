@@ -1,3 +1,5 @@
+__includes ["abc.nls"]
+
 to setup
   create_problem_space
 end
