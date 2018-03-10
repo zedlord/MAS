@@ -11,7 +11,10 @@ globals
 ]
 
 to setup
+  clear-all
+  reset-ticks
   create_problem_space
+  init
 end
 
 to create_problem_space ;Create a problem space
@@ -32,9 +35,9 @@ to create_problem_space ;Create a problem space
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
+273
 10
-647
+710
 448
 -1
 -1
@@ -59,28 +62,45 @@ ticks
 30.0
 
 SLIDER
--2
-193
-211
-226
+6
+50
+223
+83
 searchspace-smoothness
 searchspace-smoothness
 0
-5
-3.8
+10
+3.3
 0.1
 1
 NIL
 HORIZONTAL
 
 BUTTON
-20
-49
-102
-82
+8
+10
+90
+43
 setup
 setup
 NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+97
+10
+182
+43
+Run ABC
+abc
+T
 1
 T
 OBSERVER

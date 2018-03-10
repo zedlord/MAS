@@ -1,5 +1,12 @@
 __includes ["pso.nls"]
 
+breed [onlookers onlooker]
+breed [scouts scout]
+breed [employees employed]
+breed [foodsources foodsource]
+
+employees-own [ nectar_amount ]
+
 globals
 [
   no_bees ;Number of bees in the ABC
@@ -7,11 +14,29 @@ globals
   no_onlookers
   no_employed
   no_scouts
+  food_sources
 ]
 
 to init
-  set no_bees 30
+  set no_bees 20
   set no_onlookers no_bees / 2 ;50% of the swarm according to D. Karaboga's implementation https://abc.erciyes.edu.tr/pub/tr06_2005.pdf
   set no_employed no_bees / 2 ;Idem
   set no_scouts 1 ;Idem
+  
+  create-onlookers no_onlookers
+  create-scouts no_scouts
+  create-employees no_employed
+  
+  create-foodsources no_employed ; Create a food source for every employed bee
+  ask foodsources [ set shape "x" set color red]
+  ask foodsources [ setxy random-pxcor random-pycor ]
+  
+  ask onlookers [ set color yellow ]
+  ask scouts [ set color blue ]
+  ask employees [ set color red ]  
+end
+
+to abc
+  
+  tick
 end
