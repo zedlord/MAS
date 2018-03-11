@@ -7,7 +7,7 @@ patches-own
 globals
 [
   optimum ;patch with the best value
-  best_found_patch ;Save the best found patch
+  best_found_patch_global ;Save the best found patch
 ]
 
 to setup
